@@ -23,9 +23,7 @@ function Body() {
 
     return (
         <div className="container w-full md:max-w-3xl mx-auto pt-20">
-
             <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
-
                 <div className="font-sans">
                     <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-2xl">Search for keywords</h1>
                     <input
@@ -47,7 +45,7 @@ function Body() {
                             m-0
                             focus:text-gray-700 focus:bg-white focus:border-gray-900 focus:border-2 focus:outline-none
                         "
-                        placeholder="Keyword"
+                        placeholder="'word [SPACE]' to add a keyword"
                         onKeyUp={addTag}
                     />
                     <div className='mt-1 min-h-full'>
