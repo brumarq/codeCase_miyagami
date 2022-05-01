@@ -5,6 +5,9 @@ import { HiX } from 'react-icons/hi';
 function Tags(props) {
   const { tags, updateTags, setImages } = props;
 
+  /**
+  * Add tag to array of tags, if 'enter' or 'space' was typed
+  */
   const addTag = (ev) => {
     const inp = ev.target;
     const val = inp.value.trim();
@@ -18,6 +21,9 @@ function Tags(props) {
     }
   };
 
+  /**
+  * Remove tag from array of tags
+  */
   const removeTag = (selectedTag) => {
     updateTags(tags.filter((tag) => tag !== selectedTag));
   };
@@ -30,6 +36,9 @@ function Tags(props) {
       });
   };
 
+  /**
+  * On page load, load images to display on website
+  */
   useEffect(() => {
     loadImages(tags);
   }, [tags]);

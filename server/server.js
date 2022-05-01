@@ -3,6 +3,9 @@ const axios = require('axios');
 
 const app = express();
 
+/**
+ * Filter out the unnecessary information from flickr API
+ */
 function formatFlickImagesObject(flickrImages) {
   const newFlickrImages = [];
 
