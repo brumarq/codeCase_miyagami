@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
 
@@ -39,4 +40,4 @@ app.get('/api/images', (req, res) => {
     });
 });
 
-app.listen(5001, () => { console.log('Local: http://localhost:5001'); });
+app.listen(process.env.PORT, () => { console.log(`Local: http://localhost:${process.env.PORT}`); });
