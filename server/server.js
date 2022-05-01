@@ -10,7 +10,7 @@ function formatFlickImagesObject(flickrImages) {
     const flickrImage = {};
 
     flickrImage.title = image.title;
-    flickrImage.image = image.media.m;
+    flickrImage.image = image.media[Object.keys(image.media)[Object.keys(image.media).length - 1]];
     flickrImage.publishDate = image.published;
     flickrImage.author = image.author;
 
