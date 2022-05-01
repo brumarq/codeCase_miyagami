@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+import { HiX } from 'react-icons/hi';
 import Gallery from './components/Gallery';
-import { HiX } from "react-icons/hi";
 
 function App() {
-
-  
-
-  let [tags, updateTags] = useState([]);
-  let [images, setImages] = useState([])
+  const [tags, updateTags] = useState([]);
+  const [images, setImages] = useState([]);
 
   const addTag = (ev) => {
     const inp = ev.target;
     const val = inp.value.trim();
-    console.log(ev.key);
+
     if ((ev.key === ' ' || ev.key === 'Enter') && val.split(' ')[0] !== '') {
       const valSpl = val.split(' ');
       if (!tags.includes(val)) {
@@ -22,27 +19,26 @@ function App() {
       }
       inp.value = valSpl[1] || '';
     }
-  }
+  };
 
   const removeTag = (selectedTag) => {
     updateTags(tags.filter((tag) => tag !== selectedTag));
-  }
+  };
 
-  
   const loadImages = (givenTags) => {
     axios
-    .get(`/api/images?tags=${givenTags}`)
-    .then(answer => {
-      setImages(answer.data);
-    })
-    .catch(error => {
+      .get(`/api/images?tags=${givenTags}`)
+      .then((answer) => {
+        setImages(answer.data);
+      })
+      .catch((error) => {
         console.error(error);
-    });
-  }
+      });
+  };
 
   useEffect(() => {
     loadImages(tags);
-  },[tags])
+  }, [tags]);
 
   return (
     <>
@@ -65,24 +61,24 @@ function App() {
               placeholder="'word [SPACE]' to add a keyword"
               onKeyUp={addTag}
             />
-            <div className='mt-1 min-h-full'>
-              {tags.map((tag, key) => {
-                return (
-                  <div
-                    className="text-xs inline-flex mt-2 items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border" key={key}
-                  >
-                    {tag}  <HiX className='ml-2 hover:stroke-2 cursor-pointer' onClick={() => removeTag(tag)} />
-                  </div>
-                )
-              })}
+            <div className="mt-1 min-h-full">
+              {tags.map((tag) => (
+                <div
+                  className="text-xs inline-flex mt-2 items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border"
+                  key={tag}
+                >
+                  {tag}
+                  <HiX className="ml-2 hover:stroke-2 cursor-pointer" onClick={() => removeTag(tag)} />
+                </div>
+              ))}
             </div>
             <h1 className="font-bold font-sans break-normal text-gray-900 pb-2 text-3xl md:text-2xl">Images</h1>
-            <Gallery images={images}/>
+            <Gallery images={images} />
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
