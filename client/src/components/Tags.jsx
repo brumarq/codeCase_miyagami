@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { HiX } from 'react-icons/hi';
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5001';
+
 function Tags(props) {
   const { tags, updateTags, setImages } = props;
 
@@ -30,7 +32,7 @@ function Tags(props) {
 
   const loadImages = (givenTags) => {
     axios
-      .get(`/api/images?tags=${givenTags}`)
+      .get(`${API_ENDPOINT}/api/images?tags=${givenTags}`)
       .then((answer) => {
         setImages(answer.data);
       });

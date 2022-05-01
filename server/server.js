@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
+
+app.use(cors());
 
 /**
  * Filter out the unnecessary information from flickr API
