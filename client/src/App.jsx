@@ -21,9 +21,7 @@ function App() {
       <div className="container w-full md:max-w-3xl mx-auto pt-20">
         <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
           <div className="font-sans">
-            <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-2xl">Search for keywords</h1>
             <Tags tags={tags} updateTags={updateTags} setImages={setImages} />
-            <h1 className="font-bold font-sans break-normal text-gray-900 pb-2 text-3xl md:text-2xl">Images</h1>
             <Gallery images={images} />
           </div>
         </div>

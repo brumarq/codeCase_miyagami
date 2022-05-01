@@ -10,7 +10,7 @@ function formatFlickImagesObject(flickrImages) {
     const flickrImage = {};
 
     flickrImage.title = image.title;
-    flickrImage.image = image.media[Object.keys(image.media)[Object.keys(image.media).length - 1]];
+    flickrImage.image = image.media.m;
     flickrImage.publishDate = image.published;
     flickrImage.author = image.author;
 
@@ -30,8 +30,9 @@ app.get('/api/images', (req, res) => {
 
       res.json(formatFlickImagesObject(jsonFlickrImagesData));
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      res.status(500);
+      res.render('error', { error: err });
     });
 });
 

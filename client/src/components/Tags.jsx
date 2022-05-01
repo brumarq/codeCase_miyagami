@@ -27,9 +27,6 @@ function Tags(props) {
       .get(`/api/images?tags=${givenTags}`)
       .then((answer) => {
         setImages(answer.data);
-      })
-      .catch((error) => {
-        console.error(error);
       });
   };
 
@@ -39,6 +36,7 @@ function Tags(props) {
 
   return (
     <>
+      <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-2xl">Search for keywords</h1>
       <input
         type="text"
         className=" block w-full px-3 py-1.5 text-gray-700 bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:border-gray-900 focus:border-2 focus:outline-none"
@@ -56,7 +54,6 @@ function Tags(props) {
           </div>
         ))}
       </div>
-
     </>
   );
 }
