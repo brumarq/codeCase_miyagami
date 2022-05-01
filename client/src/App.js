@@ -1,18 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import Gallery from './components/Gallery';
 import { HiX } from "react-icons/hi";
 
 function App() {
 
-  let [tags, updateTags] = useState([]);
-  const imagesData = [
-    { title: 'Sky boys', link: 'https://live.staticflickr.com/65535/52040931050_1406c7240d_m.jpg', publishDate: '2022-04-30T18:20:36Z' },
-    { title: 'Sky boys2', link: 'https://live.staticflickr.com/65535/52040931050_1406c7240d_m.jpg', publishDate: '2021-03-30T18:20:36Z' },
-    { title: 'Sky boys3', link: 'https://live.staticflickr.com/65535/52040931050_1406c7240d_m.jpg', publishDate: '2020-02-30T18:20:36Z' },
-  ]
+  
 
-  const [images, setImages] = useState(imagesData)
+  let [tags, updateTags] = useState([]);
+  let [images, setImages] = useState([])
 
   const addTag = (ev) => {
     const inp = ev.target;
@@ -21,7 +18,7 @@ function App() {
     if ((ev.key === ' ' || ev.key === 'Enter') && val.split(' ')[0] !== '') {
       const valSpl = val.split(' ');
       if (!tags.includes(val)) {
-        updateTags([...tags, valSpl[0]].reverse());  
+        updateTags([...tags, valSpl[0]].reverse());
       }
       inp.value = valSpl[1] || '';
     }
@@ -30,6 +27,22 @@ function App() {
   const removeTag = (selectedTag) => {
     updateTags(tags.filter((tag) => tag !== selectedTag));
   }
+
+  
+  const loadImages = (givenTags) => {
+    axios
+    .get(`/api/images?tags=${givenTags}`)
+    .then(answer => {
+      setImages(answer.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+  }
+
+  useEffect(() => {
+    loadImages(tags);
+  },[tags])
 
   return (
     <>

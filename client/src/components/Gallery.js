@@ -6,7 +6,7 @@ const Gallery = (props) => (
             {props.images.length > 0 ? (
                 props.images.map((image, key) => (
                     <div className="w-full rounded">
-                        <img src={image.link}
+                        <img src={image.image}
                             alt="sad" key={key}/>
                     </div>
                 ))
