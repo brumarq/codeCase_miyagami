@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { HiX } from 'react-icons/hi';
 
-const API_ENDPOINT = process.env.API_ENDPOINT || 'http://localhost:5001';
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5001';
 
 function Tags(props) {
   const { tags, updateTags, setImages } = props;
