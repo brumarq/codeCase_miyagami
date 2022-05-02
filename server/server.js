@@ -10,7 +10,7 @@ app.use(cors());
 /**
  * Filter out the unnecessary information from flickr API
  */
-function formatFlickImagesObject(flickrImages) {
+function formatFlickrImagesObject(flickrImages) {
   const newFlickrImages = [];
 
   flickrImages.forEach((image) => {
@@ -35,7 +35,7 @@ app.get('/api/images', (req, res) => {
     .then((answer) => {
       const jsonFlickrImagesData = answer.data.items;
 
-      res.json(formatFlickImagesObject(jsonFlickrImagesData));
+      res.json(formatFlickrImagesObject(jsonFlickrImagesData));
     })
     .catch((err) => {
       res.status(500);
